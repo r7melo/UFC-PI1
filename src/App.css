@@ -102,6 +102,16 @@ form input[type="submit"]:hover {
     color: white;
 }
 
+.criarConta a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+.entrarConta a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
 .btn-social-google {
     text-decoration: none;
     color: white;

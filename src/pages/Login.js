@@ -1,20 +1,24 @@
-import React , {useState, useEffect } from 'react'
+import React , {useState} from 'react'
 import '../App.css'
 import Axios from "axios"
+import {useNavigation} from "@react-navigation/native"
 
-function Login() {
+export default function Login() {
 
-    const [movieName, setMovieName] = useState("")
-    const [movieReview, setMovieReview] = useState("")
+    const navigation = useNavigation()
+    const [userName, setUserName] = useState("")
+    const [userPass, setUserPass] = useState("")
 
-    const submitReview = () => {
-        Axios.post("http://localhost:3001/api/login", {
-          movieName: movieName,
-          movieReview: movieReview
-        }).then(() => {
-          alert("Successfull insert")
+    const verificaitionLogin = () => {
+        Axios.post("http://localhost:3007/api/verificaitionLogin", {
+            userName: userName,
+            userPass: userPass
+        }).then((response) => {
+            console.log(response.data[0])
+
+            
         })
-      }
+    }
     
     return (
         <div className="App">
@@ -25,17 +29,17 @@ function Login() {
 
                 <form>
                     <div className="input-field">
-                        <input type="email" name="email" placeholder="E-mail" required onChange={ (e) => { setMovieName(e.target.value) } } />
+                        <input type="email" name="email" placeholder="E-mail" required onChange={ (e) => { setUserName(e.target.value) } } />
                     </div>
                     <div className="input-field">
-                        <input type="password" name="senha" placeholder="Senha" required onChange={ (e) => { setMovieReview(e.target.value) } } />
+                        <input type="password" name="senha" placeholder="Senha" required onChange={ (e) => { setUserPass(e.target.value) } } />
                     </div>
                     <div>
-                        <input type="submit" onClick={ submitReview } value="Entrar" />
+                        <input type="submit" onClick={ verificaitionLogin } value="Entrar" />
                     </div>
                     <div className="criarConta">
                         <span>Não tem conta?</span>
-                        <a href="Cadastro">CADASTRE-SE</a>
+                        <a href="Cadastro"> CADASTRE-SE</a>
                     </div>
                 </form>
 
@@ -58,4 +62,3 @@ function Login() {
     )
 }
 
-export default Login
