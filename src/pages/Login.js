@@ -1,22 +1,28 @@
 import React , {useState} from 'react'
 import '../App.css'
 import Axios from "axios"
-import {useNavigation} from "@react-navigation/native"
+import { useHistory } from 'react-router-dom'
+
 
 export default function Login() {
 
-    const navigation = useNavigation()
-    const [userName, setUserName] = useState("")
+    let history = useHistory()
+    const [msgInfo, setMsgInfo] = useState("Preencha suas informações")
+    const [userEmail, setUserEmail] = useState("")
     const [userPass, setUserPass] = useState("")
 
-    const verificaitionLogin = () => {
-        Axios.post("http://localhost:3007/api/verificaitionLogin", {
-            userName: userName,
+    const login = () => {
+        Axios.post("http://localhost:3007/login", {
+            userEmail: userEmail,
             userPass: userPass
         }).then((response) => {
-            console.log(response.data[0])
-
-            
+            if(response.data[0] != null){
+                console.log(response.data[0].nome)
+                history.push("/")
+            }
+            else{
+                setMsgInfo("Email e senha incorretos!")
+            }
         })
     }
     
@@ -25,23 +31,23 @@ export default function Login() {
             <div className="container">
 
                 <h1>Login</h1>
-                <p>Preencha suas informações</p>
+                <p>{msgInfo}</p>
 
-                <form>
+                <div className="form">
                     <div className="input-field">
-                        <input type="email" name="email" placeholder="E-mail" required onChange={ (e) => { setUserName(e.target.value) } } />
+                        <input type="email" name="email" placeholder="E-mail" required onChange={ (e) => { setUserEmail(e.target.value) } } />
                     </div>
                     <div className="input-field">
                         <input type="password" name="senha" placeholder="Senha" required onChange={ (e) => { setUserPass(e.target.value) } } />
                     </div>
                     <div>
-                        <input type="submit" onClick={ verificaitionLogin } value="Entrar" />
+                        <input type="submit" onClick={ login } value="Entrar" />
                     </div>
                     <div className="criarConta">
                         <span>Não tem conta?</span>
                         <a href="Cadastro"> CADASTRE-SE</a>
                     </div>
-                </form>
+                </div>
 
                 <div className="footer">
                     <span className="or">ou entre com</span>
