@@ -2,7 +2,14 @@ const express = require("express")
 const bodyParser = require("body-parser")
 const cors = require("cors")
 const app = express()
-const db = require("./database.js")
+const mysql = require("mysql")
+
+const db = mysql.createPool({
+    host: "localhost",
+    user: "root",
+    password: "root",
+    database: "pi_playoffcsgo"
+})
 
 app.use(cors())
 app.use(express.json())
