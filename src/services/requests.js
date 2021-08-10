@@ -2,7 +2,7 @@ const express = require("express")
 const bodyParser = require("body-parser")
 const cors = require("cors")
 const app = express()
-requeri("database.js")
+const db = require("./database.js")
 
 app.use(cors())
 app.use(express.json())
@@ -33,7 +33,7 @@ app.post("/cadastro", (req, res) => {
     })
 })
 
-
+app.post("")
 
 app.listen(3007 , () => {
     console.log("running on port 3007");

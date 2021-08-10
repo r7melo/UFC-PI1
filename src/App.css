@@ -160,7 +160,8 @@ ul{
 
 nav {
     background: linear-gradient(90deg, rgba(0, 36, 36, 1) 0%, rgba(18, 2, 57, 1) 28%, rgba(80, 5, 73, 1) 100%);
-    padding: 0rem 0rem;
+    padding: 0rem;
+    padding-left: 1rem;
     justify-content: space-between;
     align-items: center;
 }

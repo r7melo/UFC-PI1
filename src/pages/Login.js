@@ -18,6 +18,11 @@ export default function Login() {
         }).then((response) => {
             if(response.data[0] != null){
                 console.log(response.data[0].nome)
+
+                /* GERAE TOKEN */
+                sessionStorage.setItem('token', Math.random());
+                console.log(sessionStorage.getItem('token'))
+
                 history.push("/")
             }
             else{
