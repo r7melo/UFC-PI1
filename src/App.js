@@ -5,12 +5,15 @@ import Home from './pages/Home.js'
 import Login from './pages/Login.js'
 import Cadastro from './pages/Cadastro.js'
 
+
 function App() {
   return (
     <Router>
-        <Route path="/" exact component={Home} />
-        <Route path="/Login" component={Login} />
-        <Route path="/Cadastro" component={Cadastro} />
+      <Switch>
+        <Route path="/" exact={true} component={Login} />
+        <Route path="/home" exact={true} component={Home} />
+        <Route path="/cadastro" exact={true}  component={Cadastro} />            
+      </Switch>
     </Router>
   )
 }
