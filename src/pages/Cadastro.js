@@ -11,17 +11,24 @@ export default function Cadastro() {
     const [userName, setUserName] = useState("")
     const [userEmail, setUserEmail] = useState("")
     const [userPass, setUserPass] = useState("")
+    const [userBirthDay, setUserBirthday] = useState("")
 
     const cadastro = () => {
         Axios.post("http://localhost:3007/cadastro", {
             userName: userName,
             userEmail: userEmail,
-            userPass: userPass
+            userPass: userPass,
+            userBirthDay: userBirthDay,
         }).then((response) => {
-            history.push("/")
+            console.log(response)
+            //history.push("/home")
         })
     }
 
+    const handleRedirectLogin = () =>{
+        history.push('/');
+    }
+    
     return (
         <div className="App">
             <div className="container">
@@ -39,14 +46,14 @@ export default function Cadastro() {
                     </div>
                     <div class="input-field">
                         <label for="nascimento">Data de nascimento</label>
-                        <input type="date" name="nascimento" placeholder="Data de nascimento" required/>
+                        <input type="date" name="nascimento" placeholder="Data de nascimento" onChange={e => setUserBirthday(e.target.value)} required/>
                     </div>
                     <div>
                         <input type="submit" onClick={cadastro} value="Entrar"/>
                     </div>
                     <div class="entrarConta">
                         <span>Já tem conta?</span>
-                        <a href="Login"> ENTRE AQUI</a>
+                        <a href="javascript:void(0);" onClick={handleRedirectLogin}> ENTRE AQUI</a>
                     </div>
                 </div>
             </div>

@@ -16,19 +16,27 @@ export default function Login() {
             userEmail: userEmail,
             userPass: userPass
         }).then((response) => {
-            if(response.data[0] != null){
-                console.log(response.data[0].nome)
+            console.log(response)
+            if(response.status === 200){
 
                 /* GERAE TOKEN */
                 sessionStorage.setItem('token', Math.random());
+                sessionStorage.setItem('user', response.data.obj.userName)
+                sessionStorage.setItem('email', response.data.obj.userEmail)
+                sessionStorage.setItem('id', response.data.obj.id)
                 console.log(sessionStorage.getItem('token'))
 
-                history.push("/")
-            }
-            else{
-                setMsgInfo("Email e senha incorretos!")
-            }
+                history.push("/home")
+            }       
+        }).catch((error) =>{
+            console.log(error)         
+            setMsgInfo("Email e senha incorretos!")
+          
         })
+    }
+
+    const handleRegister = () => {
+        history.push('/cadastro');
     }
     
     return (
@@ -50,24 +58,9 @@ export default function Login() {
                     </div>
                     <div className="criarConta">
                         <span>Não tem conta?</span>
-                        <a href="Cadastro"> CADASTRE-SE</a>
+                        <a onClick={handleRegister}> CADASTRE-SE</a>
                     </div>
                 </div>
-
-                <div className="footer">
-                    <span className="or">ou entre com</span>
-                    <div className="btn-social">
-                        <div className="btn-social-google">
-                            <i className="fab fa-google"></i>
-                            <a href="">Google</a>
-                        </div>
-                        <div className="btn-social-facebook">
-                            <i className="fab fa-facebook-f"></i>
-                            <a href="">Facebook</a>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     )
