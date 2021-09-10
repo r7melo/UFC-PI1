@@ -1,7 +1,6 @@
 import React,{useEffect , useState, useCallback} from 'react'
-import '../App.css'
 import { useHistory } from 'react-router-dom'
-import Nav from '../components/Nav'
+import Header from '../components/Header'
 
 export default function Home() {
     let history = useHistory()
@@ -23,7 +22,7 @@ export default function Home() {
 
     return (
         <div>
-            <Nav />
+            <Header />
         </div>
     )
 }

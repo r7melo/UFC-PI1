@@ -1,12 +1,11 @@
 import React , {useState} from 'react'
-import '../App.css'
 import Axios from "axios"
 
 import { useHistory } from 'react-router-dom'
 
 
 export default function Cadastro() {
-
+    
     let history = useHistory()
     const [userName, setUserName] = useState("")
     const [userEmail, setUserEmail] = useState("")
